@@ -4,18 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incredible JavaScript Quiz!</title>
-    <link rel="stylesheet" href="home.css">
+    <title>Incredible Coding Quiz!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="score and timer">
-    </section>
-<section classs ="start quiz page">
-    <h1>The Incredible Coding Quiz Challenge</h1>
+
+<section classs ="start_quiz_page">
+    <div class="title">Incredible Coding Quiz!</div>
     <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
     <button id="start" class="btn">Start Quiz!</button>
 </section>
+<br>
+<section class="buttons">
+    <button class="exit">Exit Quiz</button>
+</section>
+<br>
+<section class="quiz">
+    <header>
+        <div class="timer">
+            <div class="timer_seconds">60</div>
+        </div>
+        <div class="time_line"></div>
+    </header>
+
+</section>
+<section>
+    <div class="questions_text"></div>
+    <div class="options_list"></div>
+</section>
+<footer>
+    <div class="total"></div>
+    <button class="next">Next question</button>
+</footer>
+<section class="results_box">
+    <div class="completed">Good job you have completed the quiz!</div>
+    <div class="score"></div>
+    <div class="buttons">
+        <button class="restart">Refresh Quiz</button>
+        <button class="quit">Quit quiz</button>
+    </div>
+    <div class="score"></div>
+
+</section>
  <script src="user.js"></script> 
- <script src="script.js"></script> 
+ <script src="questions.js"></script> 
 </body>
 </html>

@@ -1,64 +1,31 @@
-function generateQuiz(questions, quizContainer,resultsContainer,submitButton){
-    function showQuestions(questions,quizContainer){
-
-    }
-    function showResults(questions,quizContainer,resultsContainer){
-
-    }
-    showQuestions(questions,quizContainer);
-    submitButton.onclick=function(){
-        showResults(questions,quizContainer,resultsContainer);
-    }
-}
-const myQuestions=[
+let questions=[
     {
-        question: "Commonly used data types DO NOT include:",
-        answers:{
-            a: 'strings',
-            b: 'booleans',
-            c: 'alerts',
-            d: 'numbers'
-        },
-        correctAnswer:'c'
+    id:1,
+    question: 'Question 1: Commonly used data types DO NOT include:',
+    option: ['strings','booleans','numbers','alerts'],
+    correctAnswer: 3,
     },
     {
-        question: "The condition in an if/else statement is enclosed with:",
-        answers:{
-            a:'quotes',
-            b:'curly brackets',
-            c:'parenthesis',
-            d:'square brackets'
-        },
-        correctAnswer:'b'
+    id:2,
+    question: 'Question 2: The condition in an if/else statement is enclosed with?',
+    option: ['quotes','curly brackets','parenthesis','square brackets'],
+    correctAnswer: 1,
     },
     {
-        question:"Arrays in JavaScript can be used to store:",
-        answers:{
-            a:'numbers and strings',
-            b:'other arrays',
-            c:'booleans',
-            d:'all of the above'
-        },
-        correctAnswer:'d'
+    title: 'Question 3: Arrays in Javascript can be used to store',
+    option: ['numbers and strings','other arrays','booleans','all of the above'],
+    correctAnswer: 3,
     },
     {
-        question: "String values must be enclosed within (blank) when being assigned to variables.",
-        answers:{
-            a:'commas',
-            b:'curly brackets',
-            c:'quotes',
-            d:'parenthesis'
-        },
-        correctAnswer:'c'
+    title: 'Question 4: String values must be enclosed within ______ when being assigned to variables',
+    option: ['commas','curly brackets','quotes','parenthesis'],
+    correctAnswer: 2,
     },
     {
-        question:"A very useful tool used during development and debugging for printing content to the debugger is:",
-        answers:{
-            a:'JavaScript',
-            b:'Terminal/Bash',
-            c:'For loops',
-            d:'console.log'
-        },
-        correctAnswer:'d'
+    title: 'Question 5: A very useful tool used during development and debugging for printing content to the debugger is?',
+    option: ['Javascript','Terminal/Bash','For loops','Console.log'],
+    correctAnswer: 3
     }
 ]
+
+    

@@ -89,4 +89,31 @@ function optionSelected(answer){
     let userAns = answer.textContent;
     let correcAns = questions[que_count].answer;
     const allOptions = options_list.children.length;
+    
+    if (userAns == correcAns){
+        userScore +=1;
+        answer.classList.add('correct');
+        console.log('Correct Answer!');
+        console.log('Your correct answers =' + userScore);
+        
+    }else{
+        answer.classList.add('Incorrect');
+        console.log('Wrong answer');
+        for(i=0; i< allOptions; i++){
+            if(options_list.children[i].textContent==correcAns){}
+        }
+
+    }
+}
+ for(i=0; i < allOptions;i++ ) {
+    options_list.children[i].classList.add('disabled');
+
+ }
+next_btn.classList.add('show');
+
+function showResult(){
+    start_quiz_page.classList.remove('activeInfo');
+    quiz.classList.remove('activeQnfo');
+    results_box.classList.add('active result');
+    const score = results_box.querySelector('.score');
 }

@@ -9,7 +9,7 @@ const replay_btn = document.querySelector(".buttons .replay_btn");
 const quit_quiz = document.querySelector(".buttons .quit");
 const button_list = document.querySelector(".button_list");
 let currentQuestionid = 0;
-let timeValue = 60;
+let time = 5;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -48,7 +48,7 @@ function nextQuestion(start) {
     info_text.classList.add("hide");
     start_btn.classList.add('hide');
     replay_btn.classList.remove('hide');
-    startTimer();
+    counter = setInterval(startTimer, 1000);
   } else {
     currentQuestionid++;
     if (currentQuestionid == questions.length) {
@@ -59,6 +59,7 @@ function nextQuestion(start) {
   generateButtons();
 }
 function endQuiz() {
+    console.log('end quiz')
   showResult();
   clearInterval(counter);
   button_list.textContent = "";
@@ -119,20 +120,18 @@ function showResult() {
     scoreText.innerHTML = scoreTag;
   }
 }
-function startTimer(time = timeValue) {
-  counter = setInterval(timer, 1000);
-  function timer() {
+function startTimer() {
     timeCount.textContent = time;
     time--;
     if (time < 9) {
       let addZero = timeCount.textContent;
       timeCount.textContent = "0" + addZero;
     }
-    if (time < 0) {
-      timeText.textContent = "Times up";
+    if (time <= 0) {
+      timeCount.textContent = "Times up";
       endQuiz();
     }
   }
-}
+
 
 

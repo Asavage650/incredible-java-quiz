@@ -8,45 +8,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
-<br>
-<section class="buttons">
-    <button id="start" class="btn">Start Quiz!</button>
-
-    <button class="exit">Exit Quiz</button>
-</section>
-<br>
-<section class="quiz">
-    <header>
-        <div class="timer">
-            <div class="timer_seconds">60</div>
-        </div>
-        <div class="time_line"></div>
-    </header>
-    <section classs ="start_quiz_page">
-        <div class="title">Incredible Coding Quiz!</div>
-        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-    </section>
-</section>
-<section>
-    <div class="questions_text"></div>
-    <div class="options_list"></div>
-</section>
-<footer>
-    <div class="total"></div>
-    <button class="next">Next question</button>
-</footer>
-<section class="results_box">
-    <div class="completed">Good job you have completed the quiz!</div>
-    <div class="score"></div>
+    <div class="start_btn"><button>Start Quiz!</button></div>
+    <br>
+    <div class="info_box">
+        <div class="information_about_quiz"><span>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds.</span></div>
     <div class="buttons">
-        <button class="restart">Refresh Quiz</button>
-        <button class="quit">Quit Quiz</button>
+        <button class="quit">Exit Quiz</button>
+        <button class="restart">Continue</button>
     </div>
-    <div class="score"></div>
+    </div>
+    <div class="quiz_box">
+        <header>
+            <div class="title">Incredible Coding Quiz!</div>
+            <div class="timer">
+                <div class="timer_sec">60</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        <section>
+            <div class="que_text">
 
-</section>
+            </div>
+        </section>
+        <footer>
+            <div class="total_que">
+
+            </div>
+            <button class="next_btn"></button>
+        </footer>
+    </div>
+    <div class="result_box">
+        <div class="complete_text">Congrats! You finished the quiz!</div>
+        <div class="score_text">
+
+        </div>
+        <div class="buttons">
+            <button class="restart">Replay?</button>
+            <button class="quit">Quit Quiz</button>
+        </div>
+    </div>
  <script src="user.js"></script> 
  <script src="questions.js"></script> 
 </body>

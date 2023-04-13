@@ -3,12 +3,22 @@
 *{
     background-color: pink;
     font-family: 'playfair display' ,Arial, Helvetica, sans-serif;
+    padding: auto;
+    margin: 20px;
+}
+.title{
+    font-size: 40px;
+}
+.timer_sec{
+    font-size: 20px;
+    
 }
 
 .button_list{
     display: flex;
 
 }
+
 
 .hide{
     display: none;

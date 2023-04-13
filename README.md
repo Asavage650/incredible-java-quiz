@@ -11,3 +11,11 @@
 ## Use on a typical web browser such as google chrome or safari
 ## Usage
 ## This quiz can be used as practice for javascript or to expand a persons coding knowledge.
+## ![Image of starting page](/2023-04-13%20(2).png)
+## ![Image of questions page](/2023-04-13%20(3).png)
+## Link:
+## Credits
+## I input most of the base code, with a fair amount of help from tutors on slack as well as a fellow classmate named Aden.
+## License
+## Please refer to license on github. 
+

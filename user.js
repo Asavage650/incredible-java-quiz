@@ -1,6 +1,6 @@
 const start_button = document.querySelector('.start button');
 const start_quiz_page = document.querySelector('.start_quiz_page')
-const exit_button = buttons.querySelector( 'button','.exit')
+// const exit_button = buttons.querySelector( 'button','.exit')
 const quiz = document.querySelector('.quiz')
 const results_box = document.querySelector('.results_box')
 const options_list = document.querySelector('.options_list')
@@ -116,4 +116,57 @@ function showResult(){
     quiz.classList.remove('activeQnfo');
     results_box.classList.add('active result');
     const score = results_box.querySelector('.score');
+    if (userScore > 3){
+        let scoreTag= '<span> and congrats, you got <p>'+userScore+'</p> out of <p>'+queustions.length+'</p></span>';
+        scoreText.innerHTML= scoreTag;
+    }
+    else if (userScore > 1) {
+        let scoreTag = '<span> and okay, you got <p>'+userScore+'</p> out of <p>'+queustions.length+'</p></span>';
+        scoreText.innerHTML= scoreTag;
+    }
+    else {
+        let scoreTag= '<span> and sorry, you got <p>'+userScore+'</p> out of <p>'+queustions.length+'</p></span>';
+        scoreText.innerHTML= scoreTag;
+    }
+}
+function startTimer(time){
+    counter = setInterval(timer, 1000);
+    function timer(){
+        timeCount.textContent = time;
+        time--;
+        if(time < 9){
+            let addZero = timeCount.textContent;
+            timeCount.textContent = '0' + addZero;
+        }
+        if (time < 0) {
+            clearInterval(counter);
+            timeText.textContent = 'Times up';
+            const allOptions = options_list.children.length;
+            let correcAns = questions[que_count].answer;
+            for (i=0; i < allOptions; i++){
+                if(options_list.children[i].textContent==correcAns){
+                    options_list.children[i].setAttribute('class', 'option correct');
+                    console.log('Times up: auto selected correct answer');
+                }
+            }
+            for (i=0;i < allOptions; i++){
+                options_list.children[i].classList.add('disabled');
+            }
+            next_btn.classList.add('show');
+        }
+    }
+}
+function startTimerLine(time){
+    counterLine=setInterval(timer,30);
+    function timer(){
+        time+=1;
+        time_line.style.width=time+'px';
+        if(time > 60){
+            clearInterval(counterLine);
+        }
+    }
+}
+function queCounter(index){
+    let totalQueCounTag = '<span><p>'+index+'</p> of <p>'+ questions.length+'</p> questions</span>';
+    bottom_ques_counter.innerHTML = totalQueCounTag;
 }

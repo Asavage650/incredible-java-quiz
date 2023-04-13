@@ -1,179 +1,138 @@
-const start_btn = document.querySelector('.start_btn button');
-const info_box  = document.querySelector('.info_box')
-const exit_btn = info_box.querySelector( '.buttons .quit')
-const continue_btn = info_box.querySelector('.buttons .restart')
-const quiz_box = document.querySelector('.quiz_box')
-const results_box = document.querySelector('.results_box')
-const options_list = document.querySelector('.options_list')
-const time_line = document.querySelector('header','.time_line')
-const timeCount = document.querySelector('.timer','.timer_seconds')
-
-start_btn.onclick=()=>{
-    info_box.classList.add("activeInfo");
-    
-
-}
-
-exit_btn.onclick=()=>{
-    start_quiz_page.classList.remove("activeInfo");
-}
-
-continue_btn.onclick= ()=>{
-    info_box.classList.remove('activeInfo');
-    quiz_box.classList.add('activeQuiz');
-    showQuestions(0);
-    queCounter(1);
-    startTimer(60);
-    startTimerLine(0);
-}
-
+const start_btn = document.querySelector(".start_btn");
+const info_text = document.querySelector(".information_about_quiz");
+const exit_btn = info_text.querySelector(".buttons .quit");
+const quiz_box = document.querySelector(".quiz_box");
+const results_box = document.querySelector(".results_box");
+const time_line = document.querySelector("header", ".time_line");
+const timeCount = document.querySelector(".timer", ".timer_seconds");
+const replay_btn = document.querySelector(".buttons .replay_btn");
+const quit_quiz = document.querySelector(".buttons .quit");
+const button_list = document.querySelector(".button_list");
+let currentQuestionid = 0;
 let timeValue = 60;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
 let counter;
-let counterLine;
-let widthValue =0;
+let widthValue = 0;
+const restart_quiz = document.querySelector(" .restart");
+const quit = document.querySelector(".quit");
 
-const restart_quiz = results_box.querySelector(".buttons .restart");
-const quit = results_box.querySelector(".buttons. quit");
+start_btn.onclick = () => {
+  nextQuestion(true);
+};
+function generateButtons() {
+  for (i = 0; i < 4; i++) {
+    button = document.createElement("button");
+    divwrapper = document.createElement("div");
+    button.onclick = () => {
+      if (i == questions[currentQuestionid].correcAns) {
+        userScore++;
+        console.log("Correct Answer!");
+        console.log("Your correct answers =");
+      } else {
+        console.log("Wrong answer");
+      }
 
-restart.onclick = ()=>{
- quiz.classList,add("activeQuiz");
- results_box.classList.remove("activeResult");
- timeValue = 60;
- que_count = 0;
- que_numb = 1;
- userScore = 0,   
- widthValue = 0;
- showQuestions(que_count);
- que_count(que_numb);
- clearInterval(counter);
- clearInterval(counterLine);
- startTimer(timeValue)
- startTimerLine(widthValue)
-next_btn.classList.remove("show");
+      nextQuestion();
+    };
+    button.innerHTML = questions[currentQuestionid].options[i];
+    divwrapper.appendChild(button);
+    button_list.appendChild(divwrapper);
+  }
 }
-
-quit_quiz.onclick = ()=>{
-    window.location.reload();
-}
-
-const next_btn = document.querySelector('footer .next_btn');
-const bottom_ques_counter = document.querySelector('footer .total_que')
-
-next_btn.onclick = ()=>{
-    if (que_count < queustions.length -1){
-        que_count++;
-        que_numb++;
-        showQuestions (que_count);
-        que_count (que_numb);
-        clearInterval (counter)
-        clearInterval(counterLine)
-        startTimer(timeValue)
-        next_btn.classList.remove("show")
-    }else{
-        clearInterval(counter);
-        clearInterval(counterLine);
-        showResult();
+function nextQuestion(start) {
+  button_list.textContent = "";
+  if (start) {
+    currentQuestionid = 0;
+    info_text.classList.add("hide");
+    start_btn.classList.add('hide');
+    replay_btn.classList.remove('hide');
+    startTimer();
+  } else {
+    currentQuestionid++;
+    if (currentQuestionid == questions.length) {
+      endQuiz();
     }
+  }
+  showQuestions();
+  generateButtons();
+}
+function endQuiz() {
+  showResult();
+  clearInterval(counter);
+  button_list.textContent = "";
+  replay_btn.classList.remove('hide')
+}
+function showQuestions() {
+  const que_text = document.querySelector(".que_text");
+  let que_tag =
+    "<span>" +
+    questions[currentQuestionid].id +
+    "." +
+    questions[currentQuestionid].question +
+    "<span>";
+  que_text.innerHTML = que_tag;
 }
 
-function showQuestions (index) {
-    const que_text = document.querySelector(".que_text");
-    let que_tag = '<span>' + questions[index].numb + "." + questions[index].question + '<span>';
-    let option_tag = '<div class ="option"><span>' + questions[index].options[0] + '</span></div>'
-    + '<div class="options"><span>' + questions[index].options[1] + '</span></div>'
-    + '<div class="options"><span>' + questions[index].options[2] + '</span></div>'
-    + '<div class="options"><span>' + questions[index].options[3] + '</span></div>'
-    + '<div class="options"><span>' + questions[index].options[4] + '</span></div>'
-    + '<div class="options"><span>' + questions[index].options[5] + '</span></div>';
+
+
+
+
+replay_btn.onclick = () => {
+  endQuiz();
+  quiz_box.classList.add("hide");
+  results_box.classList.add("hide");
+  que_count = 0;
+  que_numb = 1;
+  (userScore = 0), (widthValue = 0);
+  showQuestions(que_count);
+  que_count(que_numb);
 }
 
-function optionSelected(answer){
-    clearInterval(counter);
-    clearInterval(counterLine);
-    let userAns = answer.textContent;
-    let correcAns = questions[que_count].answer;
-    const allOptions = options_list.children.length;
-    
-    if (userAns == correcAns){
-        userScore +=1;
-        answer.classList.add('correct');
-        console.log('Correct Answer!');
-        console.log('Your correct answers =' + userScore);
-        
-    }else{
-        answer.classList.add('Incorrect');
-        console.log('Wrong answer');
-        for(i=0; i< allOptions; i++){
-            if(options_list.children[i].textContent==correcAns){}
-        }
+function showResult() {
+  results_box.classList.remove("hide");
+  const score_text = results_box.querySelector(".score_text");
+  if (userScore > 3) {
+    let scoreTag =
+      "<span> and congrats, you got <p>" +
+      userScore +
+      "</p> out of <p>" +
+      questions.length +
+      "</p></span>";
+    score_text.innerHTML = scoreTag;
+  } else if (userScore > 1) {
+    let scoreTag =
+      "<span> and okay, you got <p>" +
+      userScore +
+      "</p> out of <p>" +
+      questions.length +
+      "</p></span>";
+    scoreText.innerHTML = scoreTag;
+  } else {
+    let scoreTag =
+      "<span> and sorry, you got <p>" +
+      userScore +
+      "</p> out of <p>" +
+      questions.length +
+      "</p></span>";
+    scoreText.innerHTML = scoreTag;
+  }
+}
+function startTimer(time = timeValue) {
+  counter = setInterval(timer, 1000);
+  function timer() {
+    timeCount.textContent = time;
+    time--;
+    if (time < 9) {
+      let addZero = timeCount.textContent;
+      timeCount.textContent = "0" + addZero;
+    }
+    if (time < 0) {
+      timeText.textContent = "Times up";
+      endQuiz();
+    }
+  }
+}
 
-    }
-}
- for(i=0; i < allOptions;i++ ) {
-    options_list.children[i].classList.add('disabled');
 
- }
-next_btn.classList.add('show');
-
-function showResult(){
-    start_quiz_page.classList.remove('activeInfo');
-    quiz.classList.remove('activeQnfo');
-    results_box.classList.add('active result');
-    const score = results_box.querySelector('.score');
-    if (userScore > 3){
-        let scoreTag= '<span> and congrats, you got <p>'+userScore+'</p> out of <p>'+queustions.length+'</p></span>';
-        scoreText.innerHTML= scoreTag;
-    }
-    else if (userScore > 1) {
-        let scoreTag = '<span> and okay, you got <p>'+userScore+'</p> out of <p>'+queustions.length+'</p></span>';
-        scoreText.innerHTML= scoreTag;
-    }
-    else {
-        let scoreTag= '<span> and sorry, you got <p>'+userScore+'</p> out of <p>'+queustions.length+'</p></span>';
-        scoreText.innerHTML= scoreTag;
-    }
-}
-function startTimer(time){
-    counter = setInterval(timer, 1000);
-    function timer(){
-        timeCount.textContent = time;
-        time--;
-        if(time < 9){
-            let addZero = timeCount.textContent;
-            timeCount.textContent = '0' + addZero;
-        }
-        if (time < 0) {
-            clearInterval(counter);
-            timeText.textContent = 'Times up';
-            const allOptions = options_list.children.length;
-            let correcAns = questions[que_count].answer;
-            for (i=0; i < allOptions; i++){
-                if(options_list.children[i].textContent==correcAns){
-                    options_list.children[i].setAttribute('class', 'option correct');
-                    console.log('Times up: auto selected correct answer');
-                }
-            }
-            for (i=0;i < allOptions; i++){
-                options_list.children[i].classList.add('disabled');
-            }
-            next_btn.classList.add('show');
-        }
-    }
-}
-function startTimerLine(time){
-    counterLine=setInterval(timer,30);
-    function timer(){
-        time+=1;
-        time_line.style.width=time+'px';
-        if(time > 60){
-            clearInterval(counterLine);
-        }
-    }
-}
-function queCounter(index){
-    let totalQueCounTag = '<span><p>'+index+'</p> of <p>'+ questions.length+'</p> questions</span>';
-    bottom_ques_counter.innerHTML = totalQueCounTag;
-}

@@ -1,4 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 *{
     background-color: pink;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'playfair display' ,Arial, Helvetica, sans-serif;
 }
+
+.button_list{
+    display: flex;
+
+}
+
+.hide{
+    display: none;
+
+
+}
+
